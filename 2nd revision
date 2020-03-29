@@ -1,4 +1,4 @@
-Algorithm for round- robin scheduling as follows:
+Algorithm for round- robin scheduling with zero as arrival time for all processes as follows:
 Create an array rem_bt[] to keep track of remaining burst time of processes. This array is initially a copy of bt[] (burst times array)
 Create another array wt[] to store waiting times of processes. Initialize this array as 0.
 Initialize time : t = 0
