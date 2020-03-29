@@ -1,0 +1,56 @@
+round-robin scheduling algorithm with differnt arrival time  to find the avergae waiting and turn around time
+Quantum time is 3 this means each process is only executing for 3 units of time at a time.
+PROCESS	ARRIVALTIME	BURST TIME
+P1	      0	            10
+P2	      1	            4
+P3	      2           	5
+P4	      3           	3
+Completion Time: the time taken for a process to complete.
+Turn Around Time: total time the process exists in system.(completion time – arrival time).
+Waiting Time: total time the waiting for there complete execution.(turn around time – burst time ).
+Algorithm for round-robin scheduling algorithm with differnt arrival time is as follows :
+    Create two arrays of burst time res_b[] and of arrival time res_a[] and copy the value of the b[] and a[] array for calculate the remaining time.(b[] is burst time, a[] arrival time).
+Create an another array for wt[] to store waiting time.
+Initialize Time : t=0;
+Keep traversing the all process while all 
+   process are not done.
+   Do following for i'th process if it is not done yet.
+   a- if res_a[i]<= q   (quantum time :- q)
+        1. if res_b[i]>q 
+             a. t=t+q
+             b. res_b[i]-=q;
+             c. a[i]+=q;
+        2. else res_b[i]<=q(for last to execute)
+              a. t=t+b[i];
+              b. wt[i]=t-b[i]-a[i];
+              c.res_b[i]=0;
+    b- else res_a[i]<q
+          1. Initialize j=0 to number of process
+             if a[j]<a[i] (compare is there any 
+             other process come before these process)
+                    1. if res_b[j]>q 
+                            a. t=t+q
+                            b. res_b[j]-=q;
+                            c. a[j]+=q;
+                    2. else res_b[j]<=q
+                           a. t=t+b[j];
+                           b. wt[j]=t-b[j]-a[j];
+                           c.res_b[j]=0; 
+          2. now we executing the i'th process 
+                      1. if res_b[i]>q 
+                            a. t=t+q
+                            b. res_b[i]-=q;
+                            c. a[i]+=q;
+                      2. else res_b[i]<=q
+                            a. t=t+b[i];
+                            b. wt[i]=t-b[i]-a[i];
+                            c.res_b[i]=0;
+                            
+    output :-   name  ctime  wtime
+                 p1    22    12
+                 p2    15    11
+                 p3    16    11
+                  p4    9    6
+Average waiting time is 10.0
+Average compilation  time is 15.5
+Sequence is like that ->p1->p2->p3->p4->p1->p2->p3->p1->p1
